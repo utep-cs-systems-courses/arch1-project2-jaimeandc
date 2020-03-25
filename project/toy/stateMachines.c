@@ -3,8 +3,11 @@
 #include "led.h"
 #include "buzzer.h"
 #include "switches.h"
-
+static int count = 0;
+static int i = 0;
 char unsigned red_on = 0, green_on = 0, led_changed = 0;
+/*Scale notes are in order: lowC7, D, E, F, G, A, B, highC7 */
+int scale[] = {2093,1975,1760,1567,1396,1318,1174,1046};
 char toggle_red()
 {
   static char state = 0;
@@ -13,6 +16,7 @@ char toggle_red()
   case 0:
     red_on = 1;
     state = 1;
+    count++;
     break;
   case 1:
     red_on = 0;
@@ -27,6 +31,7 @@ char toggle_green()
   if(red_on) {
     green_on ^= 1;
     changed = 1;
+    count = 0;
   }
   return changed;
 }
@@ -45,16 +50,22 @@ void state_advance()
   switch(buttonSelect(button))
     {
     case 1:
-      led_update();
+      led_update(); // Twinkle Twinkle
       break;
     case 2:
-      buzzer_set_period(4000);
+      if(i != 6){
+	buzzer_set_period(scale[i]); // play scale
+      i++;
+      }
+      else{
+	i = 0;
+      }
       break;
     case 3:
-      song();
+      song(); // Jazzy Twinkle Twinkle
       break;
     case 4:
-      mute();
+      buzzer_set_period(4000); // Metronome
       break;
     }
 }

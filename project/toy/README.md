@@ -3,16 +3,12 @@ Blinky Buzzer Toy
 Compile: to compile simply type the command "make" or "make load " to compile
 and load program.
 
-button 1: when pushed will turn on red light and after 3 presses will toggle
-green light
 
-switch 1: when pushed will play through a series of different tones and lights
-for each tone.
+switch 1: when pushed repeatedly will play through Twinkle Twinkle little star.
 
-switch 2: when pushed will set buzzer period to 4000 and play tone while
-button pressed.
+switch 2: when pushed and held will play through a scale of notes (lowC7, D,
+E, F, G, A, B, highC7)
 
-switch 3: when pushed will play a song of different tones and will keep playing while
-pushed.
+switch 3: when pushed and held will play a jazzy rendition of Twinkle Twinkle little star.
 
-switch 4: will mute any tones playing.
+switch 4: When Pressed set buzzer_set_period to 4000 and acts like a metronome.
