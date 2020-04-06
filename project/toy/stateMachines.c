@@ -3,6 +3,7 @@
 #include "led.h"
 #include "buzzer.h"
 #include "switches.h"
+static int direction = 0;
 static int count = 0;
 static int i = 0;
 char unsigned red_on = 0, green_on = 0, led_changed = 0;
@@ -18,6 +19,7 @@ char toggle_red()
     state = 1;
     count++;
     break;
+
   case 1:
     red_on = 0;
     state = 0;
@@ -52,23 +54,40 @@ void state_advance()
     case 1:
       led_update(); // Twinkle Twinkle
       break;
-    case 2:
+    case 2://scale in selected direction.
+      switch(direction){
+      case 0:
       if(i != 6){
-	buzzer_set_period(scale[i]); // play scale
-      i++;
-      }
-      else{
-	i = 0;
+	buzzer_set_period(scale[i]);
+	i++;
+      };
+      break;
+      case 1:
+	if(i != 0){
+	  buzzer_set_period(scale[i]);
+	  i--;
+	};
+	break;
       }
       break;
     case 3:
       song(); // Jazzy Twinkle Twinkle
       break;
-    case 4:
-      buzzer_set_period(4000); // Metronome
+    case 4:// sets the direction of scale for button 2
+      switch(direction){
+      case 0:
+	buzzer_set_period(2000);
+	direction = 1;
+	break;
+      case 1:
+	buzzer_set_period(4000);
+	direction = 0;
+	break;
+      }
       break;
     }
 }
+
 
 int buttonSelect(button)
 {
@@ -82,7 +101,7 @@ int buttonSelect(button)
     button = 3;
   }
   else if(switch3_down){
-    button = 4;
+    button = 4;  
   }
   return button;
 }
