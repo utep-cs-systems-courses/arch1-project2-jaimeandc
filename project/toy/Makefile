@@ -11,7 +11,7 @@ AS		= msp439-elf-as
 all: button.elf
 
 #additional rules for files
-button.elf: ${COMMON_OBJECTS} p1_interrupt_handler.o led.o switches.o buzzer.o toyMain.o wdInterruptHandler.o stateMachines.o lib/libTimer.a
+button.elf: ${COMMON_OBJECTS} p1_interrupt_handler.o song.o led.o switches.o buzzer.o toyMain.o wdInterruptHandler.o stateMachines.o lib/libTimer.a
 	${CC} ${CFLAGS} ${LDFLAGS} -o $@ $^
 
 load: button.elf
@@ -20,7 +20,8 @@ load: button.elf
 clean:
 	rm -f *.o *.elf
 led.o: led.c led.h
+song.o: song.h 
 buzzer.o: buzzer.c buzzer.h
 toyMain.o: buzzer.h
 wdInterruptHandler.o: stateMachines.h
-stateMachines.o: led.h stateMachines.h
+stateMachines.o: led.h stateMachines.h song.h

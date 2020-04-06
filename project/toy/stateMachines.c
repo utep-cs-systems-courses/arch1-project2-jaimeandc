@@ -3,6 +3,7 @@
 #include "led.h"
 #include "buzzer.h"
 #include "switches.h"
+#include "song.h"
 static int direction = 0;
 static int count = 0;
 static int i = 0;
@@ -73,7 +74,7 @@ void state_advance()
     case 3:
       song(); // Jazzy Twinkle Twinkle
       break;
-    case 4:// sets the direction of scale for button 2
+    case 4:// sets the direction of scale for button 2 and mutes tones.
       switch(direction){
       case 0:
 	buzzer_set_period(2000);
@@ -84,6 +85,7 @@ void state_advance()
 	direction = 0;
 	break;
       }
+      buzzer_set_period(0);
       break;
     }
 }
