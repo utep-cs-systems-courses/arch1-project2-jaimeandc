@@ -64,6 +64,5 @@ char song()
     buzzer_set_period(2093); //low C7
     state = 1;
     break;
-
   }
 }
