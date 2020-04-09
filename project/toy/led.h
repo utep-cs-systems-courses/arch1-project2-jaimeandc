@@ -13,9 +13,6 @@ extern unsigned char led_changed;
 void led_init();
 void led_update();
 
-char stay_green();
-char song();
-char mute();
 extern unsigned char leds_changed, green_led_state, red_led_state;
 
 #endif
