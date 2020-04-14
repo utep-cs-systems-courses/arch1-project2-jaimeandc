@@ -100,7 +100,7 @@ case13:	mov #1975, r12
 
 case14:	mov #2093, r12
 	call #buzzer_set_period
-	add #1, state
+	mov #1, state
 	jmp default
 
 default:
