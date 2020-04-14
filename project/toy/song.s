@@ -27,7 +27,7 @@ jt:
 	.global song
 song:
 	cmp #15, &state
-	jnc default
+	jhs default
 	
 	mov &state, r12
 	add r12, r12

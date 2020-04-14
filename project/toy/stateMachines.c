@@ -72,7 +72,7 @@ void state_advance()
       }
       break;
     case 3:
-      song(); // Jazzy Twinkle Twinkle
+      song();y // Jazzy Twinkle Twinkle
       break;
     case 4:// sets the direction of scale for button 2 and mutes tones.
       switch(direction){

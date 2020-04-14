@@ -3,8 +3,7 @@
 #include "switches.h"
 #include "buzzer.h"
 #include "song.h"
-//static int state = 1;
-static int count = 0;
+
 void led_init()
 {
   P1DIR |= LEDS;
